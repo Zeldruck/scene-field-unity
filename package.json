@@ -1,6 +1,6 @@
 {
     "name": "com.zeldruck.scene-field",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "Scene Field",
     "description": "Allowing you to put Scene field in the inspector.",
     "unity": "2019.1",
