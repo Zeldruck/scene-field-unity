@@ -13,6 +13,7 @@ namespace Zeldruck.Packages
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             SerializedProperty scenePath = property.FindPropertyRelative("scenePath");
+            SerializedProperty sceneName = property.FindPropertyRelative("sceneName");
             SerializedProperty sceneBuildId = property.FindPropertyRelative("sceneBuildIndex");
             
             _scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath.stringValue);
@@ -27,10 +28,17 @@ namespace Zeldruck.Packages
             if (EditorGUI.EndChangeCheck())
             {
                 if (newScene == null)
+                {
+                    scenePath.stringValue = "";
+                    sceneName.stringValue = "";
+                    sceneBuildId.intValue = -1;
                     return;
+                }
                 
                 var newPath = AssetDatabase.GetAssetPath(newScene);
                 scenePath.stringValue = newPath;
+                
+                sceneName.stringValue = AssetDatabase.LoadAssetAtPath<Object>(newPath).name;
 
                 TryAddSceneToBuildIndex(newPath, out bool success, out bool error, out string message);
 

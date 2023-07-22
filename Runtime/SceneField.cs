@@ -6,6 +6,7 @@ namespace Zeldruck.Packages
     public class SceneField
     {
         public string scenePath;
+        public string sceneName;
         public int sceneBuildIndex;
     }
 }
